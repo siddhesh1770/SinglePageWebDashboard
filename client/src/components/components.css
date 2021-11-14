@@ -1,0 +1,21 @@
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+.playground {
+  background-color: rgb(207, 235, 207);
+  margin: 7px 5px 5px 5px;
+  background: rgb(238, 255, 223);
+  box-shadow: 0 0 5px 5px rgb(218, 165, 165);
+  /* border: 3px lightgreen;
+    box-shadow: 5px 10px lightsalmon; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex-basis: auto;
+}
