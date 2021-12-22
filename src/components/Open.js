@@ -11,7 +11,6 @@ const Navbar = () => {
 const Home = () => {
   return (
     <>
-      <Navbar />
       <div>Hello from Home Page</div>
     </>
   );
@@ -48,7 +47,6 @@ const Login = () => {
 const Register = () => {
   return (
     <>
-      <Navbar />
       <div>Hello from Register</div>
     </>
   );
@@ -57,10 +55,17 @@ const Register = () => {
 const ResetPasswordScreen = () => {
   return (
     <>
-      <Navbar />
       <div>Hello from Reset Password Page</div>
     </>
   );
 };
 
-export { Home, Register, Login, ResetPasswordScreen, Navbar };
+const Footer = () => {
+  return (
+    <>
+      <div>Hello from Footer Page</div>
+    </>
+  );
+};
+
+export { Home, Register, Login, ResetPasswordScreen, Navbar, Footer };

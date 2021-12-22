@@ -1,5 +1,13 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Login } from "../components/Open";
+import Dashboard from "../components/Dashboard";
+import {
+  Login,
+  Navbar,
+  Footer,
+  Home,
+  Register,
+  ResetPasswordScreen,
+} from "../components/Open";
 const Routing = () => {
   return (
     <>
@@ -7,24 +15,29 @@ const Routing = () => {
         <Switch>
           <Route exact path="/"></Route>
           <Route path="/home">
-            <div>Navbar</div>
-            <div>Hello From Home Page</div>
+            <Navbar />
+            <Home />
+            <Footer />
           </Route>
           <Route path="/login">
-            <div>Navbar</div>
+            <Navbar />
             <Login />
+            <Footer />
           </Route>
           <Route path="/register">
-            <div>Navbar</div>
-            <div>Hello From Register Page</div>
+            <Navbar />
+            <Register />
+            <Footer />
           </Route>
           <Route path="/resetpassword:resetToken">
-            <div>Navbar</div>
-            <div>Hello From Password Reset Page</div>
+            <Navbar />
+            <ResetPasswordScreen />
+            <Footer />
           </Route>
           <Route path="/dashboard">
-            <div>Navbar</div>
-            <div>Hello From Dashboard Page</div>
+            <Navbar />
+            <Dashboard />
+            <Footer />
           </Route>
         </Switch>
       </Router>
