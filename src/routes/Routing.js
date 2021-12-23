@@ -1,3 +1,5 @@
+import { createContext, useReducer } from "react";
+import { initialState, reducer } from "../hooks/UseReducer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import {
@@ -8,7 +10,10 @@ import {
   Register,
   ResetPasswordScreen,
 } from "../components/Open";
-const Routing = () => {
+
+export const UserContext = createContext();
+
+const MainSwitcher = () => {
   return (
     <>
       <Router>
@@ -41,6 +46,17 @@ const Routing = () => {
           </Route>
         </Switch>
       </Router>
+    </>
+  );
+};
+
+const Routing = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      <UserContext.Provider value={{ state, dispatch }}>
+        <MainSwitcher />
+      </UserContext.Provider>
     </>
   );
 };
