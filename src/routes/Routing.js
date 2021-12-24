@@ -10,6 +10,8 @@ import {
   Home,
   Register,
   ResetPasswordScreen,
+  Contact,
+  About,
 } from "../components/Open";
 
 export const UserContext = createContext();
@@ -19,15 +21,31 @@ const MainSwitcher = () => {
     <>
       <Router>
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path="/">
+            <Navbar />
+            <Home />
+            <Footer />
+            {/* <PushToHome /> */}
+          </Route>
+
           <Route path="/home">
             <Navbar />
             <Home />
             <Footer />
           </Route>
+          <Route path="/about">
+            <Navbar />
+            <About />
+            <Footer />
+          </Route>
           <Route path="/login">
             <Navbar />
             <Login />
+            <Footer />
+          </Route>
+          <Route path="/contact">
+            <Navbar />
+            <Contact />
             <Footer />
           </Route>
           <Route path="/register">

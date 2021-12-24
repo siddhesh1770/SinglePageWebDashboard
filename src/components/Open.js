@@ -2,10 +2,17 @@ import React, { useContext, useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
 
+const Contact = () => {
+  return (
+    <>
+      <div>Hello from Contact Page</div>
+    </>
+  );
+};
 const Dashboard = () => {
   const { state } = useContext(UserContext);
   const history = useHistory();
-  console.log(state);
+  // console.log(state);
   if (!state) {
     history.push("/login");
   }
@@ -18,16 +25,62 @@ const Navbar = () => {
     dispatch({ type: "USER", payload: false });
   };
   const IfLoggedIn = () => {
+    const myFunction = () => {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    };
     return (
       <>
-        <div>I am logged In Navbar</div>
+        <header>
+          <div className="topnav" id="myTopnav">
+            {/* <NavLink to="/home" className="helloSection">
+              Brand
+            </NavLink> */}
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            {/* <NavLink to="/login">Login</NavLink */}
+            {/* <NavLink to="/register">Register</NavLink> */}
+            <NavLink to="#" className="icon" onClick={myFunction}>
+              <i className="fa fa-bars"></i>
+            </NavLink>
+          </div>
+        </header>
       </>
     );
   };
   const IfNotLoggedIn = () => {
+    const myFunction = () => {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    };
     return (
       <>
-        <div>I am not Logged in Navbar</div>
+        <header>
+          <div className="topnav" id="myTopnav">
+            {/* <NavLink to="/home" className="helloSection">
+              Brand
+            </NavLink> */}
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register">Register</NavLink>
+            <NavLink to="#" className="icon" onClick={myFunction}>
+              <i className="fa fa-bars"></i>
+            </NavLink>
+          </div>
+        </header>
       </>
     );
   };
@@ -59,7 +112,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const loginUser = async (e) => {
     e.preventDefault();
-    console.log("hello");
+    // console.log("hello");
     await fetch(
       "https://api-siddheshpatil.herokuapp.com/singleboard/api/auth/login",
       {
@@ -96,21 +149,23 @@ const Login = () => {
           </div>
           <form className="loginForm signUpForm loginForm1770">
             <h3>Login</h3>
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               placeholder="Email"
               id="email"
               name="email"
+              autoComplete="on"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               required
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
+              autoComplete="on"
               placeholder="Password"
               id="password"
             />
@@ -139,7 +194,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const registerUser = async (e) => {
     e.preventDefault();
-    console.log("hello");
+    // console.log("hello");
     await fetch(
       "https://api-siddheshpatil.herokuapp.com/singleboard/api/auth/register",
       {
@@ -171,30 +226,33 @@ const Register = () => {
           </div>
           <form className="loginForm signUpForm signUpForm1770">
             <h3>Register</h3>
-            <label for="name">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               placeholder="Full Name"
+              autoComplete="on"
               id="name"
               name="name"
               onChange={(e) => setName(e.target.value)}
               required
             />
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               placeholder="Email"
               id="email"
+              autoComplete="on"
               name="email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               required
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
+              autoComplete="on"
               placeholder="Password"
               id="password"
             />
@@ -227,12 +285,28 @@ const Footer = () => {
   );
 };
 
+const About = () => {
+  return (
+    <>
+      <div>Hello from About page</div>
+    </>
+  );
+};
+
+const PushToHome = () => {
+  const history = useHistory();
+  history.push("/home");
+};
+
 export {
   Dashboard,
   Home,
+  PushToHome,
   Register,
+  About,
   Login,
   ResetPasswordScreen,
   Navbar,
   Footer,
+  Contact,
 };
