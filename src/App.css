@@ -1,6 +1,5 @@
 /* whole body design definations start-------------*/
-@import url("https://fonts.googleapis.com/css?famil=Poppins:200,300,400,500,600,700,800,900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -17,10 +16,16 @@ body {
 }
 /* whole body design definations End------------ */
 /* Login/Signup page Design Start--------------------------- */
-.loginForm,
-.signUpForm {
+.signUpForm1770 {
+  height: 600px;
+  width: 400px;
+}
+.loginForm1770 {
   height: 520px;
   width: 400px;
+}
+.loginForm,
+.signUpForm {
   background-color: rgba(255, 255, 255, 0.13);
   position: absolute;
   transform: translate(-50%, -50%);

@@ -1,8 +1,9 @@
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "../hooks/UseReducer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
+// import Dashboard from "../components/Open";
 import {
+  Dashboard,
   Login,
   Navbar,
   Footer,
