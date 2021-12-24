@@ -12,6 +12,7 @@ import {
   ResetPasswordScreen,
   Contact,
   About,
+  ForgotPassword,
 } from "../components/Open";
 
 export const UserContext = createContext();
@@ -27,7 +28,11 @@ const MainSwitcher = () => {
             <Footer />
             {/* <PushToHome /> */}
           </Route>
-
+          <Route path="/forgotpassword">
+            <Navbar />
+            <ForgotPassword />
+            <Footer />
+          </Route>
           <Route path="/home">
             <Navbar />
             <Home />

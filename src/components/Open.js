@@ -73,7 +73,7 @@ const Navbar = () => {
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/about">About</NavLink>
             <NavLink to="/contact">Contact</NavLink>
-            <NavLink to="/dashboard">Dashboard</NavLink>
+            {/* <NavLink to="/dashboard">Dashboard</NavLink> */}
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/register">Register</NavLink>
             <NavLink to="#" className="icon" onClick={myFunction}>
@@ -107,6 +107,9 @@ const Login = () => {
   const history = useHistory();
   const toRegister = () => {
     history.push("/register");
+  };
+  const toForgotPassword = () => {
+    history.push("/forgotpassword");
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -156,6 +159,7 @@ const Login = () => {
               id="email"
               name="email"
               autoComplete="on"
+              spellCheck="false"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -166,15 +170,17 @@ const Login = () => {
               type="password"
               name="password"
               autoComplete="on"
+              spellCheck="false"
               placeholder="Password"
               id="password"
             />
             <button onClick={loginUser}>Log In</button>
             <div className="social">
               <div className="go" onClick={toRegister}>
-                <NavLink to="/register">
-                  Don't Have Account ? Register Now
-                </NavLink>
+                <NavLink to="/register">Register Now</NavLink>
+              </div>
+              <div className="go" onClick={toForgotPassword}>
+                <NavLink to="/forgotpassword">Forgot Password</NavLink>
               </div>
             </div>
           </form>
@@ -232,6 +238,7 @@ const Register = () => {
               placeholder="Full Name"
               autoComplete="on"
               id="name"
+              spellCheck="false"
               name="name"
               onChange={(e) => setName(e.target.value)}
               required
@@ -242,6 +249,7 @@ const Register = () => {
               placeholder="Email"
               id="email"
               autoComplete="on"
+              spellCheck="false"
               name="email"
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -253,6 +261,7 @@ const Register = () => {
               type="password"
               name="password"
               autoComplete="on"
+              spellCheck="false"
               placeholder="Password"
               id="password"
             />
@@ -298,11 +307,68 @@ const PushToHome = () => {
   history.push("/home");
 };
 
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+  const history = useHistory();
+  const forgotPassword = async (e) => {
+    e.preventDefault();
+    await fetch(
+      "https://api-siddheshpatil.herokuapp.com/singleboard/api/auth/forgotpassword",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      }
+    ).then((res) => {
+      if (res.status === 200) {
+        window.alert(
+          "Password reset link sent successfully, Check your Inbox Now."
+        );
+        history.push("/home");
+      } else {
+        window.alert("Something went wrong please try again");
+      }
+    });
+  };
+  return (
+    <>
+      <div className="loginFormDiv signUpFormDiv ">
+        <section className="loginFormSection">
+          <div className="background">
+            <div className="shape"></div>
+            <div className="shape"></div>
+          </div>
+          <form className="loginForm signUpForm loginForm1770">
+            <h3>Forgot Password</h3>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              placeholder="Email"
+              id="email"
+              name="email"
+              autoComplete="on"
+              spellCheck="false"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button onClick={forgotPassword}>Send Reset Link</button>
+          </form>
+        </section>
+      </div>
+    </>
+  );
+};
+
 export {
   Dashboard,
   Home,
   PushToHome,
   Register,
+  ForgotPassword,
   About,
   Login,
   ResetPasswordScreen,
