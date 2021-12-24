@@ -89,6 +89,16 @@ body {
   font-size: 14px;
   font-weight: 300;
 }
+
+.loginFormSection input::selection {
+  color: black;
+  background-color: #f59365;
+}
+#showPassword {
+  height: 20px;
+  width: 10%;
+  background-color: brown;
+}
 ::placeholder {
   color: rgb(15, 13, 11);
 }
@@ -107,11 +117,11 @@ body {
 }
 
 .loginFormSection button:hover {
-  background-color: rgb(238, 124, 124);
+  background-color: #f59365;
 }
 
 .loginFormSection button:focus {
-  background-color: rgb(252, 124, 124);
+  background-color: #fa8d5b;
 }
 
 .signUpFormDiv .social {

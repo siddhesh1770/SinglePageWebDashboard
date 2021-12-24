@@ -58,11 +58,10 @@ const MainSwitcher = () => {
             <Register />
             <Footer />
           </Route>
-          <Route path="/resetpassword:resetToken">
-            <Navbar />
-            <ResetPasswordScreen />
-            <Footer />
-          </Route>
+          <Route
+            path="/resetpassword/:resetToken"
+            component={ResetPasswordScreen}
+          />
           <Route path="/dashboard">
             <Navbar />
             <Dashboard />

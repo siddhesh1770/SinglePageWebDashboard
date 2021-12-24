@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
 
@@ -278,10 +279,75 @@ const Register = () => {
   );
 };
 
-const ResetPasswordScreen = () => {
+const ResetPasswordScreen = ({ history, match }) => {
+  const history1770 = useHistory();
+  const resetToken = match.params.resetToken;
+
+  const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
+  const resetPassword = async (e) => {
+    e.preventDefault();
+    if (!(password === cpassword)) {
+      window.alert("Password Does not match with confirm password.");
+      return;
+    }
+    await fetch(
+      `https://api-siddheshpatil.herokuapp.com/singleboard/api/auth/resetpassword/${resetToken}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          password: password,
+        }),
+      }
+    ).then((res) => {
+      if (res.status === 201) {
+        window.alert(
+          "Password Reset Successful, Please login now with new password"
+        );
+        history1770.push("/login");
+      }
+    });
+  };
+
   return (
     <>
-      <div>Hello from Reset Password Page</div>
+      <Navbar />
+      <div className="loginFormDiv signUpFormDiv ">
+        <section className="loginFormSection">
+          <div className="background">
+            <div className="shape"></div>
+            <div className="shape"></div>
+          </div>
+          <form className="loginForm signUpForm loginForm1770">
+            <h3>Reset Password</h3>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Enter New Password"
+              id="password"
+              autoComplete="on"
+              spellCheck="false"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <label htmlFor="cpassword">Re-Enter Password</label>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              id="cpassword"
+              autoComplete="on"
+              spellCheck="false"
+              onChange={(e) => setCPassword(e.target.value)}
+              required
+            />
+            <button onClick={resetPassword}>Submit</button>
+          </form>
+        </section>
+      </div>
+      <Footer />
     </>
   );
 };
