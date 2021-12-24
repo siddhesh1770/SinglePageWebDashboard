@@ -1,38 +1,265 @@
-.App {
+/* whole body design definations start-------------*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+* ::selection {
+  background-color: #f59365;
+}
+
+body {
+  background-color: #080710;
+  background-color: #8b8a3a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3CradialGradient id='a' cx='0' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%231c691c'/%3E%3Cstop offset='1' stop-color='%231c691c' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' cx='1200' cy='800' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%238e2559'/%3E%3Cstop offset='1' stop-color='%238e2559' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='600' cy='0' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%230e3865'/%3E%3Cstop offset='1' stop-color='%230e3865' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='d' cx='600' cy='800' r='600' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%238B8A3A'/%3E%3Cstop offset='1' stop-color='%238B8A3A' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='e' cx='0' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23093C3D'/%3E%3Cstop offset='1' stop-color='%23093C3D' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='f' cx='1200' cy='0' r='800' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%2314138D'/%3E%3Cstop offset='1' stop-color='%2314138D' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' width='1200' height='800'/%3E%3Crect fill='url(%23c)' width='1200' height='800'/%3E%3Crect fill='url(%23d)' width='1200' height='800'/%3E%3Crect fill='url(%23e)' width='1200' height='800'/%3E%3Crect fill='url(%23f)' width='1200' height='800'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #282828;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Crect stroke='%23282828' stroke-width='0.7' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cuse fill='%23363636' href='%23s' y='2'/%3E%3Cuse fill='%23363636' href='%23s' x='1' y='2'/%3E%3Cuse fill='%23404040' href='%23s' x='2' y='2'/%3E%3Cuse fill='%23404040' href='%23s'/%3E%3Cuse fill='%234a4a4a' href='%23s' x='2'/%3E%3Cuse fill='%234a4a4a' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23525252'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5' /%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='5' y='2'/%3E%3Cuse href='%23s' x='5' y='6'/%3E%3Cuse href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23525252'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23595959'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23282828'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%23606060'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='scale(14.5) translate(-931.03 -698.28)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+/* whole body design definations End------------ */
+/* Login/Signup page Design Start--------------------------- */
+/* .signUpForm1770 {
+  height: 630px;
+  width: 400px;
+}
+.loginForm1770 {
+  height: 520px;
+  width: 400px;
+} */
+.loginForm,
+.signUpForm {
+  min-width: 400px;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  /* margin: 50%; */
+  font-size: large !important;
+  font-weight: 600 !important;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+}
+
+.signUpFormDiv form * {
+  font-family: "Poppins", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.signUpFormDiv form h3 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 42px;
+
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loginFormSection label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.loginFormSection input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  color: #f59365;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.loginFormSection input::selection {
+  color: black;
+  background-color: #f59365;
+}
+#showPassword {
+  height: 20px;
+  width: 10%;
+  background-color: brown;
+}
+::placeholder {
+  color: rgb(15, 13, 11);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loginFormSection button {
+  margin-top: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.loginFormSection button:hover {
+  background-color: #f59365;
+}
+
+.loginFormSection button:focus {
+  background-color: #fa8d5b;
+}
+
+.signUpFormDiv .social {
+  margin-top: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.signUpFormDiv .social div {
+  width: 100%;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  /* background-color: rgba(255, 255, 255, 0.27); */
+  color: #eaf0fb;
+  text-align: center;
+  cursor: pointer;
+}
+.signUpFormDiv .social div:hover {
+  background-color: rgba(255, 255, 255, 0.47);
+}
+.signUpFormDiv .social .fb {
+  margin-left: 25px;
+}
+.signUpFormDiv .social i {
+  margin-right: 4px;
+}
+/* Login/Signup page Design End--------------------------- */
+/* Background Circles Start------------------ */
+.loginFormSection .background {
+  width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.signUpFormDiv .background .shape {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
 }
 
-.App-link {
-  color: #61dafb;
+.signUpFormDiv .shape:first-child {
+  background: linear-gradient(#3b2a23, #346452);
+  left: -80px;
+  top: -80px;
+}
+.signUpFormDiv .shape:last-child {
+  /* background: linear-gradient(to right, #616863, #3b3131); */
+  right: -30px;
+  bottom: -80px;
+}
+/* Background Circles End------------------ */
+
+/* kachra */
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  /* display: flex; */
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px) !important;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Style the links inside the navigation bar */
+.topnav a {
+  margin: 5px;
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 20px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  /* background-color: #ddd; */
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(20px);
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+}
+.topnav .helloSection {
+  /* background-color: antiquewhite;
+  color: #333; */
+}
+.topnav .helloSection:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #f59365;
+  color: rgb(20, 9, 9);
+  font-weight: 700;
+  font-size: larger;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .loginForm,
+  .signUpForm {
+    transform: translate(0, 0);
+    margin: 50px;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
   }
 }
