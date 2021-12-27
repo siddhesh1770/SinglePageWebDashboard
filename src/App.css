@@ -148,7 +148,7 @@ body {
 }
 /* Login/Signup page Design End--------------------------- */
 /* Background Circles Start------------------ */
-.loginFormSection .background {
+/* .loginFormSection .background {
   width: 430px;
   height: 520px;
   position: absolute;
@@ -169,10 +169,10 @@ body {
   top: -80px;
 }
 .signUpFormDiv .shape:last-child {
-  /* background: linear-gradient(to right, #616863, #3b3131); */
+  background: linear-gradient(to right, #616863, #3b3131);
   right: -30px;
   bottom: -80px;
-}
+} */
 /* Background Circles End------------------ */
 
 /* kachra */
@@ -244,6 +244,7 @@ body {
   .signUpForm {
     transform: translate(0, 0);
     margin: 50px;
+    display: none;
   }
 }
 
@@ -262,4 +263,26 @@ body {
     display: block;
     text-align: left;
   }
+}
+
+.swal-overlay {
+  background-color: rgba(170, 164, 161, 0.3);
+}
+.swal-modal {
+  background-color: rgb(156, 152, 150);
+  border: 3px solid white;
+  color: #080710;
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #f59365;
+  font-size: 12px;
+  border: 0.5px solid #f59365;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.swal-button:hover {
+  background-color: rgb(156, 152, 150);
 }

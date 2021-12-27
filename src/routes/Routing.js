@@ -1,6 +1,11 @@
 import { createContext, useReducer } from "react";
 import { initialState, reducer } from "../hooks/UseReducer";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 // import Dashboard from "../components/Open";
 import {
   Dashboard,
@@ -23,10 +28,7 @@ const MainSwitcher = () => {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Navbar />
-            <Home />
-            <Footer />
-            {/* <PushToHome /> */}
+            <Redirect to="/home" />
           </Route>
           <Route path="/forgotpassword">
             <Navbar />
