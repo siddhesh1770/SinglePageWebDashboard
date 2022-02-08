@@ -43,5 +43,38 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      function alerthello(id) {
+        const noteId = Number(id.substr(0, 13));
+      }
+      // document
+      //   .getElementById("container")
+      //   .addEventListener("keydown", (event) => {
+      //     if (event.key === "Enter") {
+      //       document.execCommand("insertLineBreak");
+      //       event.preventDefault();
+      //     }
+      //   });
+      function saveInLocal(id) {
+        const noteId = Number(id.substr(0, 13));
+        let newContent = document.getElementById(id).innerText;
+        let data = JSON.parse(localStorage.getItem("cardData"));
+        for (let i = 0; i < data.cards.length; i++) {
+          if (data.cards[i].cardId === noteId) {
+            data.cards[i].content = newContent;
+            localStorage.setItem("cardData", JSON.stringify(data));
+            return;
+          }
+        }
+        const hell = {
+          cardId: noteId,
+          type: "note",
+          content: newContent,
+        };
+        data.cards.push(hell);
+        console.log(data);
+        localStorage.setItem("cardData", JSON.stringify(data));
+      }
+    </script>
   </body>
 </html>

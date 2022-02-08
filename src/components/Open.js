@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
-import LoadingBar from "react-redux-loading-bar";
 import swal from "sweetalert";
+import { renderNoteCard, renderCowinCard } from "./Cards";
 
 const Contact = () => {
   return (
@@ -11,14 +11,36 @@ const Contact = () => {
     </>
   );
 };
+
+const Controller = () => {
+  return (
+    <>
+      <div className="control-bar">
+        <button onClick={renderNoteCard} id="create-note-card">
+          New Note
+        </button>
+        <button onClick={renderCowinCard} id="create-cowin-card">
+          New Vaccine Tracker
+        </button>
+      </div>
+    </>
+  );
+};
+
 const Dashboard = () => {
   const { state } = useContext(UserContext);
   const history = useHistory();
-  // console.log(state);
   if (!state) {
     history.push("/login");
   }
-  return <div>Hello From Dashboard</div>;
+  return (
+    <>
+      <Controller />
+      <div className="playground" id="playground">
+        <div className="container" id="container"></div>
+      </div>
+    </>
+  );
 };
 
 const Navbar = () => {
@@ -38,8 +60,6 @@ const Navbar = () => {
     return (
       <>
         <header>
-          <LoadingBar />
-
           <div className="topnav" id="myTopnav">
             {/* <NavLink to="/home" className="helloSection">
               Brand
