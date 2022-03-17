@@ -43,5 +43,111 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      function alerthello(id) {
+        const noteId = Number(id.substr(0, 13));
+      }
+      // document
+      //   .getElementById("container")
+      //   .addEventListener("keydown", (event) => {
+      //     if (event.key === "Enter") {
+      //       document.execCommand("insertLineBreak");
+      //       event.preventDefault();
+      //     }
+      //   });
+      function saveInLocal(id) {
+        const noteId = Number(id.substr(0, 13));
+        let newContent = document.getElementById(id).innerText;
+        let data = JSON.parse(localStorage.getItem("cardData"));
+        for (let i = 0; i < data.cards.length; i++) {
+          if (data.cards[i].cardId === noteId) {
+            data.cards[i].content = newContent;
+            localStorage.setItem("cardData", JSON.stringify(data));
+            return;
+          }
+        }
+        const hell = {
+          cardId: noteId,
+          type: "note",
+          content: newContent,
+        };
+        data.cards.push(hell);
+        console.log(data);
+        localStorage.setItem("cardData", JSON.stringify(data));
+      }
+      function convertDate(dateString) {
+        var p = dateString.split(/\D/g);
+        return [p[2], p[1], p[0]].join("-");
+      }
+      async function trackVaccine(id) {
+        console.log(id);
+        const cardId = Number(id.substr(5, 17));
+        const pincode = document.getElementById(`pincode${cardId}`).value;
+        const date1 = document.getElementById(`date${cardId}`).value;
+        const date = convertDate(date1);
+        const age = document.getElementById(`age${cardId}`).value;
+        console.log(date);
+        const url = `https://cdn-api.co-vin.in/api/v4/appointment/sessions/public/calendarByPin?pincode=${pincode}&date=${date}`;
+
+        const status = document.getElementById(`vaccavailable${cardId}`);
+
+        status.innerHTML = "Tracking...";
+        status.style.backgroundColor = "yellow";
+        let flag = true;
+        while (flag) {
+          let res = await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          let data = await res.json();
+          let centers = data.centers;
+
+          for (let i = 0; i < centers.length; i++) {
+            if (
+              centers[i].fee_type == "Free" &&
+              centers[i].sessions[0].min_age_limit == age
+            ) {
+              status.innerHTML = "Available";
+              console.log(centers[i].sessions[0]);
+              status.style.backgroundColor = "green";
+              const dose = 1;
+              const session_id = centers[i].sessions[0].session_id;
+              const slot = centers[i].sessions[0].slots[0];
+              window.open(
+                `https://yashwanthm.github.io/cowin-vaccine-booking/?dose=${dose}&session_id=${session_id}&slot=${slot}`
+              );
+              flag = false;
+              return;
+            }
+          }
+          await new Promise((r) => setTimeout(r, 5000));
+        }
+      }
+
+      async function trackEkart(id1) {
+        const id = Number(id1.substr(8, 20));
+        console.log(id);
+        const trackingId = document.getElementById(`ekartTrack${id}`).value;
+        const url = "https://ekartlogistics.com/ws/getTrackingDetails";
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Credentials": "true",
+            "Sec-Fetch-Mode" : "cors",
+          },
+          body: JSON.stringify({
+            trackingId: trackingId,
+          }),
+        });
+        const data1 = await res.json();
+        const data = data1[shipmentTrackingDetails];
+        console.log(data[10].statusDetails);
+      }
+    </script>
   </body>
 </html>

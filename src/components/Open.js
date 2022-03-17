@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
+import swal from "sweetalert";
+import { renderNoteCard, renderCowinCard, renderEkartCard } from "./Cards";
 
 const Contact = () => {
   return (
@@ -10,14 +11,39 @@ const Contact = () => {
     </>
   );
 };
+
+const Controller = () => {
+  return (
+    <>
+      <div className="control-bar">
+        <button onClick={renderNoteCard} id="create-note-card">
+          New Note
+        </button>
+        <button onClick={renderCowinCard} id="create-cowin-card">
+          New Vaccine Tracker
+        </button>
+        <button onClick={renderEkartCard} id="create-ekart-card">
+          Ekart Tracker
+        </button>
+      </div>
+    </>
+  );
+};
+
 const Dashboard = () => {
   const { state } = useContext(UserContext);
   const history = useHistory();
-  // console.log(state);
   if (!state) {
     history.push("/login");
   }
-  return <div>Hello From Dashboard</div>;
+  return (
+    <>
+      <Controller />
+      <div className="playground" id="playground">
+        <div className="container" id="container"></div>
+      </div>
+    </>
+  );
 };
 
 const Navbar = () => {
@@ -131,11 +157,11 @@ const Login = () => {
       }
     ).then((res) => {
       if (res.status === 400) {
-        window.alert("Please Enter valid email or password");
+        swal("Oops!", "Please Enter valid email or password", "error");
       } else if (res.status === 401) {
-        window.alert("Invalid Email or Password");
+        swal("Oops!", "Invalid Email or Password", "error");
       } else if (res.status === 500) {
-        window.alert("Internal Server Error");
+        swal("Oops!", "Internal Server Error", "error");
       } else if (res.status === 200) {
         dispatch({ type: "USER", payload: true });
         // localStorage.setItem("userState", "true");
@@ -201,6 +227,13 @@ const Register = () => {
   const [name, setName] = useState("");
   const registerUser = async (e) => {
     e.preventDefault();
+    const helloElem = document
+      .getElementById("mainForm")
+      .querySelectorAll(".disableIt");
+    for (let kil = 0; kil < helloElem.length; kil++) {
+      helloElem[kil].style.backgroundColor = "grey";
+      helloElem[kil].disabled = true;
+    }
     // console.log("hello");
     await fetch(
       "https://api-siddheshpatil.herokuapp.com/singleboard/api/auth/register",
@@ -219,9 +252,13 @@ const Register = () => {
       if (res.status === 201) {
         toLogin();
       } else {
-        window.alert("Something went wrong please try again later");
+        swal("Oops!", "Something went wrong please try again later", "error");
       }
     });
+    for (let kil = 0; kil < helloElem.length; kil++) {
+      helloElem[kil].style.backgroundColor = "";
+      helloElem[kil].disabled = false;
+    }
   };
   return (
     <>
@@ -231,7 +268,7 @@ const Register = () => {
             <div className="shape"></div>
             <div className="shape"></div>
           </div>
-          <form className="loginForm signUpForm signUpForm1770">
+          <form className="loginForm signUpForm signUpForm1770" id="mainForm">
             <h3>Register</h3>
             <label htmlFor="name">Name</label>
             <input
@@ -239,6 +276,7 @@ const Register = () => {
               placeholder="Full Name"
               autoComplete="on"
               id="name"
+              className="disableIt"
               spellCheck="false"
               name="name"
               onChange={(e) => setName(e.target.value)}
@@ -248,6 +286,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="Email"
+              className="disableIt"
               id="email"
               autoComplete="on"
               spellCheck="false"
@@ -261,14 +300,17 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
+              className="disableIt"
               autoComplete="on"
               spellCheck="false"
               placeholder="Password"
               id="password"
             />
-            <button onClick={registerUser}>Register</button>
+            <button className="disableIt" onClick={registerUser}>
+              Register
+            </button>
             <div className="social">
-              <div className="go" onClick={toLogin}>
+              <div className="go disableIt" onClick={toLogin}>
                 <NavLink to="/login">Already Have Account ? Login Here</NavLink>
               </div>
             </div>
@@ -288,7 +330,7 @@ const ResetPasswordScreen = ({ history, match }) => {
   const resetPassword = async (e) => {
     e.preventDefault();
     if (!(password === cpassword)) {
-      window.alert("Password Does not match with confirm password.");
+      swal("Oops!", "Password Does not match with confirm password.", "error");
       return;
     }
     await fetch(
@@ -304,8 +346,10 @@ const ResetPasswordScreen = ({ history, match }) => {
       }
     ).then((res) => {
       if (res.status === 201) {
-        window.alert(
-          "Password Reset Successful, Please login now with new password"
+        swal(
+          "Oops!",
+          "Password Reset Successful, Please login now with new password",
+          "error"
         );
         history1770.push("/login");
       }
@@ -391,12 +435,14 @@ const ForgotPassword = () => {
       }
     ).then((res) => {
       if (res.status === 200) {
-        window.alert(
-          "Password reset link sent successfully, Check your Inbox Now."
+        swal(
+          "Oops!",
+          "Password reset link sent successfully, Check your Inbox Now.",
+          "error"
         );
         history.push("/home");
       } else {
-        window.alert("Something went wrong please try again");
+        swal("Oops!", "Something went wrong please try again", "error");
       }
     });
   };
