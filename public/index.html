@@ -75,6 +75,51 @@
         console.log(data);
         localStorage.setItem("cardData", JSON.stringify(data));
       }
+      function convertDate(dateString) {
+        var p = dateString.split(/\D/g);
+        return [p[2], p[1], p[0]].join("-");
+      }
+      async function trackVaccine(id) {
+        console.log(id);
+        const cardId = Number(id.substr(5, 17));
+        const pincode = document.getElementById(`pincode${cardId}`).value;
+        const date1 = document.getElementById(`date${cardId}`).value;
+        const date = convertDate(date1);
+        const age = document.getElementById(`age${cardId}`).value;
+        console.log(date);
+        const url = `https://cdn-api.co-vin.in/api/v4/appointment/sessions/public/calendarByPin?pincode=${pincode}&date=${date}`;
+
+        const status = document.getElementById(`vaccavailable${cardId}`);
+        
+        status.innerHTML = "Tracking...";
+        status.style.backgroundColor = "yellow";
+        let flag = true;
+        while (flag) {
+          let res = await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          let data = await res.json();
+          let centers = data.centers;
+          
+          for (let i = 0; i < centers.length; i++) {
+            if (centers[i].fee_type == 'Free' && centers[i].sessions[0].min_age_limit == age){
+              status.innerHTML = "Available";
+              console.log(centers[i].sessions[0]);
+              status.style.backgroundColor = "green";
+              const dose = 1;
+              const session_id = centers[i].sessions[0].session_id;
+              const slot = centers[i].sessions[0].slots[0];
+              window.open(`https://yashwanthm.github.io/cowin-vaccine-booking/?dose=${dose}&session_id=${session_id}&slot=${slot}`)
+              flag = false;
+              return;
+            }
+          }
+          await new Promise(r => setTimeout(r, 5000));
+        }
+      }
     </script>
   </body>
 </html>
