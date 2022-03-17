@@ -32,4 +32,23 @@ const renderCowinCard = () => {
   document.getElementById(`book${idgenerate}`).style.display = "none";
 };
 
-export { renderNoteCard, renderCowinCard };
+const renderEkartCard = () => {
+  const container = document.getElementById("container");
+  const ekartCard = document.createElement("div");
+  const idgenerate = Date.now();
+  ekartCard.setAttribute("class", "ekart-card card");
+  ekartCard.setAttribute("id", idgenerate);
+  ekartCard.innerHTML = `<div><h2 class="h2Head">Ekart Card</h2>
+  <div>Tracking ID = <input type="text" id="ekartTrack${idgenerate}"></input></div>
+  <div><button onclick="trackEkart(this.id)" id="ekartBtn${idgenerate}">Track Order</button></div>
+  <br/><br/>
+  <div id="ekartStatus${idgenerate}">Please Enter Your Tracking ID</div>
+  </div>
+  `;
+  container.appendChild(ekartCard);
+  const change = document.getElementById(`ekartStatus${idgenerate}`);
+  change.style.backgroundColor = "yellow";
+  
+}
+
+export { renderNoteCard, renderCowinCard, renderEkartCard};

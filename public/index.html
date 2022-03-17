@@ -90,7 +90,7 @@
         const url = `https://cdn-api.co-vin.in/api/v4/appointment/sessions/public/calendarByPin?pincode=${pincode}&date=${date}`;
 
         const status = document.getElementById(`vaccavailable${cardId}`);
-        
+
         status.innerHTML = "Tracking...";
         status.style.backgroundColor = "yellow";
         let flag = true;
@@ -103,22 +103,50 @@
           });
           let data = await res.json();
           let centers = data.centers;
-          
+
           for (let i = 0; i < centers.length; i++) {
-            if (centers[i].fee_type == 'Free' && centers[i].sessions[0].min_age_limit == age){
+            if (
+              centers[i].fee_type == "Free" &&
+              centers[i].sessions[0].min_age_limit == age
+            ) {
               status.innerHTML = "Available";
               console.log(centers[i].sessions[0]);
               status.style.backgroundColor = "green";
               const dose = 1;
               const session_id = centers[i].sessions[0].session_id;
               const slot = centers[i].sessions[0].slots[0];
-              window.open(`https://yashwanthm.github.io/cowin-vaccine-booking/?dose=${dose}&session_id=${session_id}&slot=${slot}`)
+              window.open(
+                `https://yashwanthm.github.io/cowin-vaccine-booking/?dose=${dose}&session_id=${session_id}&slot=${slot}`
+              );
               flag = false;
               return;
             }
           }
-          await new Promise(r => setTimeout(r, 5000));
+          await new Promise((r) => setTimeout(r, 5000));
         }
+      }
+
+      async function trackEkart(id1) {
+        const id = Number(id1.substr(8, 20));
+        console.log(id);
+        const trackingId = document.getElementById(`ekartTrack${id}`).value;
+        const url = "https://ekartlogistics.com/ws/getTrackingDetails";
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Credentials": "true",
+            "Sec-Fetch-Mode" : "cors",
+          },
+          body: JSON.stringify({
+            trackingId: trackingId,
+          }),
+        });
+        const data1 = await res.json();
+        const data = data1[shipmentTrackingDetails];
+        console.log(data[10].statusDetails);
       }
     </script>
   </body>

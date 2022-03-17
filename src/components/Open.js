@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
 import swal from "sweetalert";
-import { renderNoteCard, renderCowinCard } from "./Cards";
+import { renderNoteCard, renderCowinCard, renderEkartCard } from "./Cards";
 
 const Contact = () => {
   return (
@@ -21,6 +21,9 @@ const Controller = () => {
         </button>
         <button onClick={renderCowinCard} id="create-cowin-card">
           New Vaccine Tracker
+        </button>
+        <button onClick={renderEkartCard} id="create-ekart-card">
+          Ekart Tracker
         </button>
       </div>
     </>
