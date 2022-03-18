@@ -98,8 +98,8 @@ const Navbar = () => {
               Brand
             </NavLink> */}
             <NavLink to="/home">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            {/* <NavLink to="/about">About</NavLink>
+            <NavLink to="/contact">Contact</NavLink> */}
             {/* <NavLink to="/dashboard">Dashboard</NavLink> */}
             <NavLink to="/login">Login</NavLink>
             <NavLink to="/register">Register</NavLink>
@@ -124,7 +124,11 @@ const Navbar = () => {
 const Home = () => {
   return (
     <>
-      <div>Hello from Home Page</div>
+      <br/><br/><br/>
+      <div className="home" id="home"><h1>Hello Welcome to Single Board Dashboard</h1>
+      <h3>Sign in to get started <NavLink to={"/login"}>now</NavLink></h3>
+      </div>
+
     </>
   );
 };
