@@ -128,25 +128,32 @@
 
       async function trackEkart(id1) {
         const id = Number(id1.substr(8, 20));
+        const status = document.getElementById(`ekartStatus${id}`);
         console.log(id);
         const trackingId = document.getElementById(`ekartTrack${id}`).value;
-        const url = "https://ekartlogistics.com/ws/getTrackingDetails";
+        const url = `https://api-siddheshpatil.herokuapp.com/singleboard/api/auth/ekarttrack/${trackingId}`;
+        status.style.backgroundColor = "yellow";
+        status.innerHTML = "Tracking...";
         const res = await fetch(url, {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Access-Control-Allow-Credentials": "true",
-            "Sec-Fetch-Mode" : "cors",
           },
-          body: JSON.stringify({
-            trackingId: trackingId,
-          }),
         });
-        const data1 = await res.json();
-        const data = data1[shipmentTrackingDetails];
-        console.log(data[10].statusDetails);
+        const data = await res.json();
+        if (data.message == 'Delivered') {
+          status.innerHTML = "Delivered";
+          status.style.backgroundColor = "green";
+        } else {
+          console.log(data);
+          status.innerHTML = data.message;
+          status.style.backgroundColor = "tan";
+        }
+      }
+      function saveinLocal(id1) {
+        const id = Number(id1.substr(4, 16));
+        const text = document.getElementById(`note${id}`).innerText;
+        console.log(text)
       }
     </script>
   </body>
