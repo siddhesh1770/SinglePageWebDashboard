@@ -46,6 +46,7 @@ const renderEkartCard = () => {
   <div>Tracking ID = <input type="text" id="ekartTrack${idgenerate}"></input></div>
   <div><button onclick="trackEkart(this.id)" id="ekartBtn${idgenerate}">Track Order</button></div>
   <br/><br/>
+  <div><h5>Shipment Status</h5></div>
   <div id="ekartStatus${idgenerate}">Please Enter Your Tracking ID</div>
   </div>
   `;
