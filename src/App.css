@@ -470,3 +470,16 @@ body::-webkit-scrollbar-thumb {
 .noteTextArea::-webkit-scrollbar {
   width: 6px;
 }
+
+.notecardTX {
+  font-size: 80%;
+  margin: 0 4px;
+  width: 100%;
+  height: 259px;
+  overflow-x: auto;
+  border-radius: 10px;
+  outline: none;
+  padding: 7px;
+  backdrop-filter: blur(12px); /*done*/
+  background-color: rgba(255, 255, 255, 0.3); /*done*/
+}
