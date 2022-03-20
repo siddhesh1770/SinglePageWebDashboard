@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
 import swal from "sweetalert";
-import {  renderYoutubeCard, renderCalenderCard, renderNoteCard, renderCowinCard, renderEkartCard, renderSpotifyCard } from "./Cards";
+import { renderNoteCardCurr, renderYoutubeCard, renderCalenderCard, renderNoteCard, renderCowinCard, renderEkartCard, renderSpotifyCard } from "./Cards";
 
 const Contact = () => {
   return (
@@ -16,6 +16,9 @@ const Controller = () => {
   return (
     <>
       <div className="control-bar">
+      <button onClick={renderNoteCardCurr} id="create-oldNote-card">
+          Sync Old Notes
+        </button>
         <button onClick={renderNoteCard} id="create-note-card">
           New Note
         </button>
@@ -45,6 +48,7 @@ const Dashboard = () => {
   if (!state) {
     history.push("/login");
   }
+  
   return (
     <>
       <Controller />

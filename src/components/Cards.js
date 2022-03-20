@@ -7,13 +7,53 @@ const getYId = (url) => {
   return regex.exec(url)[3];
 };
 
+const deleteNoteCard = (id) => {
+  
+}
+
+const renderNoteCardCurr = (text) => {
+  const container = document.getElementById("container");
+  const localData = JSON.parse(localStorage.getItem("localnotes"));
+  localData.notes.forEach(element => {
+  const noteCard = document.createElement("div");
+  noteCard.setAttribute("class", "note-card card");
+  noteCard.setAttribute("id", element.id);
+  noteCard.innerHTML = `<div><h2 onclick="deleteNote(this.id)" id="hell${element.id}" class="h2Head">Close Note</h2>
+  <div>
+    <textarea onchange="saveinLocal(this.id)" class="notecardTX" id=note${element.id}>${element.text}</textarea>
+  </div>
+  </div>`;
+  container.appendChild(noteCard);
+  });
+  document.getElementById("create-oldNote-card").style.display = "none";
+};
+
 const renderNoteCard = () => {
   const container = document.getElementById("container");
   const noteCard = document.createElement("div");
   const idgenerate = Date.now();
+  let local = localStorage.getItem("localnotes");
+  if (!local) {
+    let hell = {
+      notes: [
+        {
+          id: idgenerate,
+          noteText: "",
+        },
+      ],
+    }
+    localStorage.setItem("localnotes", JSON.stringify(hell));
+  } else {
+    local = JSON.parse(local);
+    local.notes.push({
+      id: idgenerate,
+      noteText: "",
+    });
+    localStorage.setItem("localnotes", JSON.stringify(local));
+  }
   noteCard.setAttribute("class", "note-card card");
   noteCard.setAttribute("id", idgenerate);
-  noteCard.innerHTML = `<div><h2 class="h2Head">Note</h2>
+  noteCard.innerHTML = `<div><h2 class="h2Head" id="hell${idgenerate}" onclick="deleteNote(this.id)">Close Note</h2>
   <div>
     <textarea onchange="saveinLocal(this.id)" class="notecardTX" id=note${idgenerate}></textarea>
   </div>
@@ -27,7 +67,7 @@ const renderCowinCard = () => {
   const idgenerate = Date.now();
   cowinCard.setAttribute("class", "cowin-card card");
   cowinCard.setAttribute("id", idgenerate);
-  cowinCard.innerHTML = `<div><h2 class="h2Head">Track Covid Vaccine</h2>
+  cowinCard.innerHTML = `<div id="hell${idgenerate}"><h2 class="h2Head">Track Covid Vaccine</h2>
   <div class="form-group">
     <div class="pincode" >Pincode = <input type="number" id="pincode${idgenerate}"></input></div>
     <div >Age  =   <input id="age${idgenerate}" type="radio" name="age${idgenerate}" id="18${idgenerate}" value="18">18+    </input><input id="45${idgenerate}" value="45" type="radio" name="age${idgenerate}">45+</input></div>
@@ -138,5 +178,6 @@ export {
   renderNoteCard,
   renderCowinCard,
   renderEkartCard,
+  renderNoteCardCurr,
   renderSpotifyCard,
 };
