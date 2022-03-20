@@ -1,3 +1,12 @@
+const print = (s) => {
+  console.log(s);
+};
+const getYId = (url) => {
+  let regex =
+    /(youtu.*be.*)\/(watch\?v=|embed\/|v|shorts|)(.*?((?=[&#?])|$))/gm;
+  return regex.exec(url)[3];
+};
+
 const renderNoteCard = () => {
   const container = document.getElementById("container");
   const noteCard = document.createElement("div");
@@ -53,7 +62,81 @@ const renderEkartCard = () => {
   container.appendChild(ekartCard);
   const change = document.getElementById(`ekartStatus${idgenerate}`);
   change.style.backgroundColor = "yellow";
-  
-}
+};
 
-export { renderNoteCard, renderCowinCard, renderEkartCard};
+const renderSpotifyCard = () => {
+  const container = document.getElementById("container");
+  const spotifyCard = document.createElement("div");
+  const idgenerate = Date.now();
+  let plink = "";
+  const hello = localStorage.getItem("playlist");
+  if (!hello) {
+    plink = window.prompt("Enter Playlist Link");
+    localStorage.setItem("playlist", plink);
+  } else {
+    const confirmation = window.confirm(
+      "Do you want to change the playlist link?"
+    );
+    if (confirmation) {
+      plink = window.prompt("Enter Playlist Link");
+      localStorage.setItem("playlist", plink);
+    } else {
+      plink = localStorage.getItem("playlist");
+    }
+  }
+  const plid = plink.slice(34, 56);
+  console.log(plid);
+  spotifyCard.setAttribute("class", "spotify-card card");
+  spotifyCard.setAttribute("id", idgenerate);
+  spotifyCard.innerHTML = `
+  <div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/${plid}?utm_source=generator" width="100%" height="300" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+  `;
+  container.appendChild(spotifyCard);
+};
+
+const renderCalenderCard = () => {
+  const container = document.getElementById("container");
+  const calenderCard = document.createElement("div");
+  const idgenerate = Date.now();
+  calenderCard.setAttribute("class", "calender-card card");
+  calenderCard.setAttribute("id", idgenerate);
+  calenderCard.innerHTML = `<div>
+  <iframe src="https://calendar.google.com/calendar/embed?src=en.indian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKolkata" style="border: 0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+  </div>`;
+  container.appendChild(calenderCard);
+};
+
+const renderYoutubeCard = () => {
+  const container = document.getElementById("container");
+  const youtubeCard = document.createElement("div");
+  const idgenerate = Date.now();
+  youtubeCard.setAttribute("class", "youtube-card card");
+  let ylink = "";
+  const hello = localStorage.getItem("youtubeVdoLink");
+  if (!hello) {
+    ylink = window.prompt("Enter Youtube Video Link");
+    localStorage.setItem("youtubeVdoLink", ylink);
+  } else {
+    const confirmation = window.confirm(
+      "Do you want to change the Youtube Video Link?"
+    );
+    if (confirmation) {
+      ylink = window.prompt("Enter Youtube Video Link");
+      localStorage.setItem("youtubeVdoLink", ylink);
+    } else {
+      ylink = localStorage.getItem("youtubeVdoLink");
+    }
+  }
+  const vid = getYId(ylink);
+  youtubeCard.innerHTML = `<iframe width="100%" height="305" src="https://www.youtube.com/embed/${vid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  container.appendChild(youtubeCard);
+};
+
+export {
+  renderYoutubeCard,
+  renderCalenderCard,
+  renderNoteCard,
+  renderCowinCard,
+  renderEkartCard,
+  renderSpotifyCard,
+};

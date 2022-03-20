@@ -141,7 +141,7 @@
           },
         });
         const data = await res.json();
-        if (data.message == 'Delivered') {
+        if (data.message == "Delivered") {
           status.innerHTML = "Delivered";
           status.style.backgroundColor = "green";
         } else {
@@ -153,7 +153,7 @@
       function saveinLocal(id1) {
         const id = Number(id1.substr(4, 16));
         const text = document.getElementById(`note${id}`).innerText;
-        console.log(text)
+        console.log(text);
       }
     </script>
   </body>

@@ -505,3 +505,11 @@ body::-webkit-scrollbar-thumb {
   color: red;
   font-size: 50px;
 }
+
+.youtube-card {
+  width: 500px;
+}
+
+.spotify-card {
+  width: 270px;
+}

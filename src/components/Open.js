@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import { UserContext } from "../routes/Routing";
 import swal from "sweetalert";
-import { renderNoteCard, renderCowinCard, renderEkartCard } from "./Cards";
+import {  renderYoutubeCard, renderCalenderCard, renderNoteCard, renderCowinCard, renderEkartCard, renderSpotifyCard } from "./Cards";
 
 const Contact = () => {
   return (
@@ -24,6 +24,15 @@ const Controller = () => {
         </button>
         <button onClick={renderEkartCard} id="create-ekart-card">
           Ekart Tracker
+        </button>
+        <button onClick={renderSpotifyCard} id="create-spotify-card">
+          Spotify Player
+        </button>
+        <button onClick={renderCalenderCard} id="create-calendar-card">
+          Google Calendar
+        </button>
+        <button onClick={renderYoutubeCard} id="create-youtube-card">
+          YouTube Player
         </button>
       </div>
     </>
