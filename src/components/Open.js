@@ -492,7 +492,19 @@ const ForgotPassword = () => {
   );
 };
 
+const NoPaymentPage = () => {
+  return (
+    <>
+    <div>
+      <h1>Access to this site is restricted due to No Payment.</h1>
+      <h3>Please make payment through this <a href="https://paytm.me/HdW-YbJ">link.</a> and wait for upto 10 to 30 minutes for site to be update</h3>
+    </div>
+    </>
+  )
+}
+
 export {
+  NoPaymentPage,
   Dashboard,
   Home,
   PushToHome,
