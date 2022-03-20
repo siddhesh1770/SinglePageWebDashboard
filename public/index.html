@@ -152,8 +152,34 @@
       }
       function saveinLocal(id1) {
         const id = Number(id1.substr(4, 16));
-        const text = document.getElementById(`note${id}`).innerText;
-        console.log(text);
+        console.log("id", id);
+        const text = document.getElementById(`note${id}`).value;
+        let hell = localStorage.getItem("localnotes");
+        let data = JSON.parse(hell);
+        for (let i = 0; i < data.notes.length; i++) {
+          if (data.notes[i].id === id) {
+            console.log("hello")
+            console.log(text)
+            data.notes[i].text = text;
+            localStorage.setItem("localnotes", JSON.stringify(data));
+            break;
+          }
+        }
+        localStorage.setItem("localnotes", JSON.stringify(data));
+      }
+      function deleteNote(id1) {
+        console.log("hello from deletion")
+        const id = Number(id1.substr(4, 16));
+        document.getElementById(id).style.display = "none";
+        let hell = localStorage.getItem("localnotes");
+        let data = JSON.parse(hell);
+        for (let i = 0; i < data.notes.length; i++) {
+          if (data.notes[i].id === id) {
+            data.notes.splice(i, 1);
+            localStorage.setItem("localnotes", JSON.stringify(data));
+            break;
+          }
+        }
       }
     </script>
   </body>
