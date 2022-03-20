@@ -17,6 +17,7 @@ import {
   ResetPasswordScreen,
   Contact,
   About,
+  NoPaymentPage,
   ForgotPassword,
 } from "../components/Open";
 
@@ -77,13 +78,23 @@ const MainSwitcher = () => {
 
 const Routing = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  return (
-    <>
-      <UserContext.Provider value={{ state, dispatch }}>
-        <MainSwitcher />
-      </UserContext.Provider>
-    </>
-  );
+  const hell = window.location.href;
+  if (hell.includes("vaishuboard")) {
+    return (
+      <>
+        <NoPaymentPage />
+      </>
+    )
+  } else {
+    return (
+      <>
+        <UserContext.Provider value={{ state, dispatch }}>
+          <MainSwitcher />
+        </UserContext.Provider>
+      </>
+    );
+  }
+  
 };
 
 export { Routing };

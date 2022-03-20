@@ -7,23 +7,23 @@ const getYId = (url) => {
   return regex.exec(url)[3];
 };
 
-const deleteNoteCard = (id) => {
-  
-}
-
 const renderNoteCardCurr = (text) => {
   const container = document.getElementById("container");
   const localData = JSON.parse(localStorage.getItem("localnotes"));
-  localData.notes.forEach(element => {
-  const noteCard = document.createElement("div");
-  noteCard.setAttribute("class", "note-card card");
-  noteCard.setAttribute("id", element.id);
-  noteCard.innerHTML = `<div><h2 onclick="deleteNote(this.id)" id="hell${element.id}" class="h2Head">Close Note</h2>
+  localData.notes.forEach((element) => {
+    const noteCard = document.createElement("div");
+    let hell23 = "";
+    if (!element.text == undefined) {
+      hell23 = element.text;
+    }
+    noteCard.setAttribute("class", "note-card card");
+    noteCard.setAttribute("id", element.id);
+    noteCard.innerHTML = `<div><h2 onclick="deleteNote(this.id)" id="hell${element.id}" class="h2Head">Close Note</h2>
   <div>
-    <textarea onchange="saveinLocal(this.id)" class="notecardTX" id=note${element.id}>${element.text}</textarea>
+    <textarea onchange="saveinLocal(this.id)" class="notecardTX" id=note${element.id}>${hell23}</textarea>
   </div>
   </div>`;
-  container.appendChild(noteCard);
+    container.appendChild(noteCard);
   });
   document.getElementById("create-oldNote-card").style.display = "none";
 };
@@ -41,7 +41,7 @@ const renderNoteCard = () => {
           noteText: "",
         },
       ],
-    }
+    };
     localStorage.setItem("localnotes", JSON.stringify(hell));
   } else {
     local = JSON.parse(local);
